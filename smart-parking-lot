@@ -1,0 +1,32 @@
+```python
+print("\n === SMART PARKING LOT ===")
+
+total_spaces = int(input("Enter total parking spaces: "))
+n = int(input("Enter number of operations: "))
+
+occupied = 0
+
+for i in range(1, n + 1):
+    operation = input(f"Enter operation {i} (IN/OUT): ").upper()
+
+    if operation == "IN":
+        if occupied < total_spaces:
+            occupied = occupied + 1
+            print("Car parked successfully")
+        else:
+            print("Parking Full")
+
+    elif operation == "OUT":
+        if occupied > 0:
+            occupied = occupied - 1
+            print("Car left successfully")
+        else:
+            print("Parking Lot Empty")
+
+    else:
+        print("Invalid operation")
+
+print("\n === PARKING REPORT ===")
+print("Occupied spaces:", occupied)
+print("Available spaces:", total_spaces - occupied)
+```
