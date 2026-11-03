@@ -1,0 +1,71 @@
+
+print("\n===== STUDENT PERFORMANCE ANALYZER =====\n")
+
+n=int(input("enter number of students "))
+
+topper=None
+lowest_performer=None
+
+highest=0
+lowest=300
+
+count_40=0
+above_average=0
+total_marks=0
+
+for i in range(1,n+1):
+
+    name=input(f"enter student name{i} ")
+    phy=int(input(f"enter physics marks{i} "))
+    chem=int(input(f"enter chemistry marks{i} "))
+    maths=int(input(f"enter maths marks{i} "))
+
+    total=phy+chem+maths
+
+    average=total/3
+
+    total_marks=total_marks+total
+
+    if average >= 90:
+        grade="A+"
+    elif average >= 80:
+        grade="A"
+    elif average >= 70:
+        grade="B"
+    elif average >= 60:
+        grade="C"
+    else:
+        grade="D"
+
+    if total > highest:
+        highest=total
+        topper=name
+
+    if total < lowest:
+        lowest=total
+        lowest_performer=name
+
+    if average >= 40:
+        count_40=count_40+1
+
+    if average > 0:
+        above_average=above_average+1
+
+    print("\nstudent name:",name)
+    print("total marks:",total)
+    print("average:",round(average,2))
+    print("grade:",grade)
+
+
+class_average=total_marks/(n*3)
+
+print("\n===== FINAL REPORT =====")
+
+print("class average:",round(class_average,2))
+print("topper:",topper)
+print("highest marks:",highest)
+
+print("lowest performer:",lowest_performer)
+print("lowest marks:",lowest)
+
+print("students passed:",count_40)
