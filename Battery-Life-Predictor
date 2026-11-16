@@ -1,0 +1,27 @@
+
+print("Battery Life Predictor")
+
+battery = int(input("Enter current battery: "))
+usage = int(input("Enter battery usage per hour: "))
+hours = int(input("Enter required hours: "))
+
+total_usage = usage * hours
+remaining = battery - total_usage
+
+print("\nBattery Report")
+
+print("Current Battery:", battery)
+print("Total Battery Usage:", total_usage)
+
+if remaining <= 0:
+    print("Battery will die before required time")
+
+elif remaining < 15:
+    print("Warning: Battery is very low")
+    print("Remaining Battery:", remaining)
+
+else:
+    print("Battery will survive")
+    print("Remaining Battery:", remaining)
+
+print("Maximum Usage Hours:", battery // usage)
