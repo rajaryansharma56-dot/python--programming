@@ -1,0 +1,68 @@
+
+print("======================================")
+print("          GHOST SIGNAL")
+print("     SUSPICIOUS PATTERN DETECTOR")
+print("======================================")
+
+logs = []
+
+n = int(input("\nEnter number of login records: "))
+
+for i in range(n):
+
+    print("\nLogin Record", i + 1)
+
+    username = input("Enter username: ")
+    ip = input("Enter IP address: ")
+    attempts = int(input("Enter login attempts: "))
+    hour = int(input("Enter login hour (0-23): "))
+
+    record = {
+        "username": username,
+        "ip": ip,
+        "attempts": attempts,
+        "hour": hour
+    }
+
+    logs.append(record)
+
+
+print("\n========== SECURITY SCAN ==========")
+
+suspicious_count = 0
+
+for i in range(len(logs)):
+
+    risk = 0
+
+    print("\nUser:", logs[i]["username"])
+
+    if logs[i]["attempts"] >= 10:
+        print("ALERT: Too many login attempts")
+        risk += 40
+
+    if logs[i]["hour"] >= 0 and logs[i]["hour"] <= 4:
+        print("ALERT: Unusual login timing")
+        risk += 20
+
+    for j in range(len(logs)):
+
+        if i != j and logs[i]["ip"] == logs[j]["ip"]:
+            if logs[i]["username"] != logs[j]["username"]:
+                risk += 30
+                print("ALERT: Shared IP accessing multiple accounts")
+                break
+
+    if risk > 0:
+        suspicious_count += 1
+        print("Risk Score:", risk)
+
+    else:
+        print("Status: Normal activity")
+
+
+print("\n======================================")
+print("TOTAL RECORDS:", len(logs))
+print("SUSPICIOUS RECORDS:", suspicious_count)
+print("NORMAL RECORDS:", len(logs) - suspicious_count)
+print("======================================")
