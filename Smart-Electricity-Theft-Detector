@@ -1,0 +1,58 @@
+
+print("======================================")
+print("    SMART ELECTRICITY THEFT DETECTOR")
+print("======================================")
+
+name = input("Enter consumer name: ")
+
+previous = int(input("Enter previous month units: "))
+current = int(input("Enter current month units: "))
+
+meter_previous = int(input("Enter previous meter reading: "))
+meter_current = int(input("Enter current meter reading: "))
+
+print("\n========== ANALYSIS ==========")
+
+actual_units = meter_current - meter_previous
+
+print("Consumer:", name)
+print("Previous consumption:", previous)
+print("Current consumption:", current)
+print("Actual meter units:", actual_units)
+
+if previous > 0:
+    change = ((previous - current) / previous) * 100
+else:
+    change = 0
+
+print("Consumption decrease:", round(change, 2), "%")
+
+if meter_current < meter_previous:
+    print("\nWARNING: Invalid meter readings!")
+
+elif actual_units < 0:
+    print("\nWARNING: Suspicious meter activity!")
+
+elif current == 0 and previous > 0:
+    print("\nCRITICAL: No electricity consumption recorded!")
+
+elif actual_units < current * 0.5 and previous > 0:
+    print("\nWARNING: Possible meter irregularity detected!")
+
+elif change > 60:
+    print("\nWARNING: Unusually low electricity consumption!")
+
+elif current > previous * 2:
+    print("\nALERT: Unusually high electricity consumption!")
+
+else:
+    print("\nNORMAL: No unusual consumption detected.")
+
+print("\n========== FINAL REPORT ==========")
+print("Consumer:", name)
+print("Recorded units:", current)
+print("Meter difference:", actual_units)
+
+print("Analysis completed successfully.")
+
+print("======================================")
